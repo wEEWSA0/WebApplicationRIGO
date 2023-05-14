@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WebApplicationRIGO.Models;
 using WebApplicationRIGO.Repository;
 
 namespace WebApplicationRIGO.Controllers;
@@ -13,6 +14,12 @@ public class TripsController : ControllerBase
     public List<Trip> GetAll()
     {
         return _tripsRepository.GetAll();
+    }
+    
+    [HttpGet("GetLast/{count}")]
+    public List<Trip> GetLast(int count)
+    {
+        return _tripsRepository.GetLast(count);
     }
     
     [HttpGet("GetUserTrips/{id}")]

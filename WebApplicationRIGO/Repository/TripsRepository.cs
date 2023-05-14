@@ -1,3 +1,6 @@
+using WebApplicationRIGO.DbContext;
+using WebApplicationRIGO.Models;
+
 namespace WebApplicationRIGO.Repository;
 
 public class TripsRepository
@@ -12,6 +15,20 @@ public class TripsRepository
     public List<Trip> GetAll()
     {
         return _dbContext.Trips.Where(t => t.IsActive).ToList();
+    }
+    
+    public List<Trip> GetLast(int count)
+    {
+        var trips = _dbContext.Trips.Where(t => t.IsActive).OrderByDescending(t => t.Id).ToList();
+
+        if (trips.Count <= count)
+        {
+            return trips;
+        }
+        
+        trips.RemoveRange(count, trips.Count-1-count);
+        
+        return trips;
     }
 
     public void AddNew(Trip trip)

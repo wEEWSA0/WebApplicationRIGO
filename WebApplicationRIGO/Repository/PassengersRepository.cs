@@ -1,3 +1,5 @@
+using WebApplicationRIGO.DbContext;
+
 namespace WebApplicationRIGO.Repository;
 
 public class PassengersRepository

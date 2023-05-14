@@ -1,4 +1,6 @@
-using WebApplicationRIGO.Additional;var builder = WebApplication.CreateBuilder(args);
+using WebApplicationRIGO.Additional;
+
+var builder = WebApplication.CreateBuilder(args);
 
 builder.WebHost.ConfigureKestrel(options =>
 {

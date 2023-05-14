@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WebApplicationRIGO.Models;
 using WebApplicationRIGO.Repository;
 
 namespace WebApplicationRIGO.Controllers;
@@ -16,9 +17,16 @@ public class UsersController : ControllerBase
     }
     
     [HttpGet("Get/{id}")]
-    public User Get(int id)
+    public IActionResult Get(int id)
     {
-        return _usersRepository.Get(id);
+        var user = _usersRepository.Get(id);
+
+        if (user == null)
+        {
+            return StatusCode(418);
+        }
+
+        return StatusCode(200, user);
     }
     
     [HttpPost("AddNew")]

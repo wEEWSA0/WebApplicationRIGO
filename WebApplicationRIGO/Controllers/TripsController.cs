@@ -37,7 +37,9 @@ public class TripsController : ControllerBase
     [HttpPost("FetchTrips")]
     public List<Trip> GetTripsByParameters(TripParameters tripParameters)
     {
-        return _tripsRepository.GetTripsByParameters(tripParameters.DeparturePlace, tripParameters.ArrivalPlace, tripParameters.DepartureTime);
+        var parameters = tripParameters;
+        
+        return _tripsRepository.GetTripsByParameters(parameters.DeparturePlace, parameters.ArrivalPlace, parameters.DepartureTime, parameters.TripType);
     }
 
     [HttpPost("SetActive")]
@@ -59,4 +61,5 @@ public class TripParameters
     public string? DeparturePlace { get; set; }
     public string? ArrivalPlace { get; set; }
     public DateOnly? DepartureTime { get; set; }
+    public bool? TripType { get; set; }
 }

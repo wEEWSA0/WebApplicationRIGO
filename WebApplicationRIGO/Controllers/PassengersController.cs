@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WebApplicationRIGO.Models;
 using WebApplicationRIGO.Repository;
 
 namespace WebApplicationRIGO.Controllers;

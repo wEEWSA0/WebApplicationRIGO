@@ -37,10 +37,15 @@ public class TripsRepository
         _dbContext.SaveChanges();
     }
     
-    public List<Trip> GetTripsByParameters(string? departurePlace, string? arrivalPlace, DateOnly? departureTime)
+    public List<Trip> GetTripsByParameters(string? departurePlace, string? arrivalPlace, DateOnly? departureTime, bool? tripType)
     {
         var trips = _dbContext.Trips.Where(t => t.IsActive).ToList();
 
+        if (tripType != null)
+        {
+            trips = trips.Where(t => t.TripType == tripType).ToList();
+        }
+        
         if (departurePlace != null || departurePlace == "")
         {
             trips = trips.Where(t => t.DeparturePlace == departurePlace).ToList();
@@ -55,7 +60,7 @@ public class TripsRepository
         {
             trips = trips.Where(t => t.DepartureTime == departureTime.Value).ToList();
         }
-
+        
         return trips.ToList();
     }
     

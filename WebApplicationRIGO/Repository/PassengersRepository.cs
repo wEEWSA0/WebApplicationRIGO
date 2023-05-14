@@ -1,4 +1,5 @@
 using WebApplicationRIGO.DbContext;
+using WebApplicationRIGO.Models;
 
 namespace WebApplicationRIGO.Repository;
 
@@ -61,10 +62,15 @@ public class PassengersRepository
 
     public int AddNew(Passenger passenger)
     {
-        var dublicatePassengers = _dbContext.Passengers.FirstOrDefault(p =>
+        if (passenger.TripId == null || passenger.UserId == null)
+        {
+            return 418;
+        }
+        
+        var dublicatePassenger = _dbContext.Passengers.FirstOrDefault(p =>
             p.UserId == passenger.UserId && p.TripId == passenger.TripId);
 
-        if (dublicatePassengers != null)
+        if (dublicatePassenger != null)
         {
             return 418;
         }

@@ -45,7 +45,7 @@ public class UsersRepository
         return user;
     }
     
-    public User Get(int id)
+    public User? Get(int id)
     {
         return _dbContext.Users.Where(u => u.Id == id).ToList()[0];
     }

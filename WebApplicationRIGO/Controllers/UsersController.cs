@@ -37,9 +37,18 @@ public class UsersController : ControllerBase
             return StatusCode(208);
         }
         
-        _usersRepository.AddNew(user);
+        try
+        {
+            _usersRepository.AddNew(user);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("ERROR!!! " + e.Message);
 
-        return StatusCode(200);
+            return StatusCode(502, "База данных умерла");
+        }
+
+        return StatusCode(201);
     }
     
     [HttpGet("IsRegistered/{email}")]
@@ -71,22 +80,19 @@ public class UsersController : ControllerBase
             return StatusCode(418);
         }
         
-        int result = _usersRepository.SetUser(user);
+        int result = 500;
+        
+        try
+        {
+            result = _usersRepository.SetUser(user);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("ERROR!!! " + e.Message);
+
+            return StatusCode(502, "База данных умерла");
+        }
 
         return StatusCode(result);
     }
 }
-
-// old code
-/*
-    [HttpPost("AddNew")]
-    public void AddNew(User user)
-    {
-        _usersRepository.AddNew(user);
-    }*/
-/*
-[HttpGet("Login/{email}/{password}")]
-public bool Login(string email, string password)
-{
-    return _usersRepository.IsUserExistsByEmailAndPassword(email, password);
-}*/

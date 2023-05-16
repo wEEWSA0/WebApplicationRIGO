@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "QU83u2kQ71uPkdBXz56z6nNb57l5aT0o9ul4+7BfWW44lgKy2nLua0PV2f9YOHsh9IZZp0DK3OffL0P+CnxEyA==",
+  "dgSpecHash": "xPOViapoxAgUteuzjQRgpwhqRATtZv6jIykeCzxPUmio+veSjHjKUlkMIow+lOUHYM3z+4ECyVrqSAntAfRd0A==",
   "success": true,
   "projectFilePath": "D:\\C#\\WebApplicationRIGO\\WebApplicationRIGO\\WebApplicationRIGO.csproj",
   "expectedPackageFiles": [
@@ -26,6 +26,7 @@
     "C:\\Users\\User\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\npgsql\\8.0.0-preview.2\\npgsql.8.0.0-preview.2.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\npgsql.entityframeworkcore.postgresql\\8.0.0-preview.2\\npgsql.entityframeworkcore.postgresql.8.0.0-preview.2.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\restsharp\\110.2.1-alpha.0.3\\restsharp.110.2.1-alpha.0.3.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",

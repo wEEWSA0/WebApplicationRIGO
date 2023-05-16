@@ -10,6 +10,7 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Tools": "8.0.0-preview.2.23128.3",
           "Npgsql.EntityFrameworkCore.PostgreSQL": "8.0.0-preview.2",
+          "RestSharp": "110.2.1-alpha.0.3",
           "Swashbuckle.AspNetCore": "6.2.3"
         },
         "runtime": {
@@ -213,6 +214,17 @@
           }
         }
       },
+      "RestSharp/110.2.1-alpha.0.3": {
+        "dependencies": {
+          "System.Text.Json": "8.0.0-preview.2.23128.3"
+        },
+        "runtime": {
+          "lib/net6.0/RestSharp.dll": {
+            "assemblyVersion": "110.2.1.0",
+            "fileVersion": "110.2.1.0"
+          }
+        }
+      },
       "Swashbuckle.AspNetCore/6.2.3": {
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "3.0.0",
@@ -257,6 +269,12 @@
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0"
         },
+        "runtime": {
+          "lib/net6.0/System.Text.Encodings.Web.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.12803"
+          }
+        },
         "runtimeTargets": {
           "runtimes/browser/lib/net6.0/System.Text.Encodings.Web.dll": {
             "rid": "browser",
@@ -270,6 +288,12 @@
         "dependencies": {
           "System.Runtime.CompilerServices.Unsafe": "6.0.0",
           "System.Text.Encodings.Web": "8.0.0-preview.2.23128.3"
+        },
+        "runtime": {
+          "lib/net6.0/System.Text.Json.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.23.12803"
+          }
         }
       }
     }
@@ -433,6 +457,13 @@
       "sha512": "sha512-/iTnBkFjOoiIvzAQBo/gFqTfiudKhLsMkl9l0wFW8LqTQ0J5is+Az0uaxNc3CDJlfxb2xHKdQSoFID36T/W5DQ==",
       "path": "npgsql.entityframeworkcore.postgresql/8.0.0-preview.2",
       "hashPath": "npgsql.entityframeworkcore.postgresql.8.0.0-preview.2.nupkg.sha512"
+    },
+    "RestSharp/110.2.1-alpha.0.3": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-hwdC3JnA0auyjkB2YNszR0KJiYsQ/dFLuQTFTqScBOsU0r2Y13KqDa8S8PvQ12KCmYlB4CuoC9ZnyhbYov0Syg==",
+      "path": "restsharp/110.2.1-alpha.0.3",
+      "hashPath": "restsharp.110.2.1-alpha.0.3.nupkg.sha512"
     },
     "Swashbuckle.AspNetCore/6.2.3": {
       "type": "package",

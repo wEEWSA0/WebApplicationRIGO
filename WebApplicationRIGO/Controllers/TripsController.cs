@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using RestSharp;
+using WebApplicationRIGO.Controllers.Dtos;
 using WebApplicationRIGO.Models;
 using WebApplicationRIGO.Repository;
 
@@ -29,9 +31,20 @@ public class TripsController : ControllerBase
     }
     
     [HttpPost("AddNew")]
-    public void AddNew(Trip trip)
+    public IActionResult AddNew(Trip trip)
     {
-        _tripsRepository.AddNew(trip);
+        try
+        {
+            _tripsRepository.AddNew(trip);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("ERROR!!! " + e.Message);
+
+            return StatusCode(502, "База данных умерла");
+        }
+
+        return StatusCode(201);
     }
     
     [HttpPost("FetchTrips")]
@@ -45,21 +58,49 @@ public class TripsController : ControllerBase
     [HttpPost("SetActive")]
     public IActionResult SetTripActive(TripIdWithActive tripIdWithActive)
     {
-        int result = _tripsRepository.SetTripActive(tripIdWithActive.TripId, tripIdWithActive.IsActive);
+        int result = 500;
+        
+        try
+        {
+            result = _tripsRepository.SetTripActive(tripIdWithActive.TripId, tripIdWithActive.IsActive);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("ERROR!!! " + e.Message);
+
+            return StatusCode(502, "База данных умерла");
+        }
         
         return StatusCode(result);
     }
-}
+    
+    [HttpPost("Edit")]
+    public IActionResult EditTrip(TripEditParameters tripParameters)
+    {
+        int result = 500;
+        
+        try
+        {
+            result = _tripsRepository.EditTrip(tripParameters);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("ERROR!!! " + e.Message);
 
-public class TripIdWithActive
-{
-    public int TripId { get; set; }
-    public bool IsActive { get; set; }
-}
-public class TripParameters
-{
-    public string? DeparturePlace { get; set; }
-    public string? ArrivalPlace { get; set; }
-    public DateOnly? DepartureTime { get; set; }
-    public bool? TripType { get; set; }
+            return StatusCode(502, "База данных умерла");
+        }
+        
+        return StatusCode(result);
+    }
+    
+    // [HttpPost("TestImage")]
+    // public IActionResult TestImageSerivce()
+    // {
+    //     int result = 3;
+    //
+    //     // var request = new RestRequest("address/update", Method.Post).AddJsonBody(body, ContentType.Json);
+    //     // var response = await client.PostAsync<AddressUpdateResponse>(request);
+    //     
+    //     return StatusCode(result);
+    // }
 }

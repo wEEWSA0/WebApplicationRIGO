@@ -31,15 +31,37 @@ public class PassengersController : ControllerBase
     [HttpDelete("DeleteUserFromTrip")]
     public IActionResult DeleteUserFromTrip(int userId, int tripId)
     {
-        var result = _passengersRepository.DeleteUserFromTrip(userId, tripId);
+        var result = 500;
 
+        try
+        {
+            result = _passengersRepository.DeleteUserFromTrip(userId, tripId);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("ERROR!!! " + e.Message);
+
+            return StatusCode(502, "База данных умерла");
+        }
+        
         return StatusCode(result);
     }
     
     [HttpPost("AddNew")]
     public IActionResult AddNew(Passenger passenger)
     {
-        var result = _passengersRepository.AddNew(passenger);
+        var result = 500;
+        
+        try
+        {
+            result = _passengersRepository.AddNew(passenger);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("ERROR!!! " + e.Message);
+
+            return StatusCode(502, "База данных умерла");
+        }
         
         return StatusCode(result);
     }

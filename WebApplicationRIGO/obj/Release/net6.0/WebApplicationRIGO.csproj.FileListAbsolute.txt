@@ -47,3 +47,4 @@ D:\C#\WebApplicationRIGO\WebApplicationRIGO\obj\Release\net6.0\refint\WebApplica
 D:\C#\WebApplicationRIGO\WebApplicationRIGO\obj\Release\net6.0\WebApplicationRIGO.pdb
 D:\C#\WebApplicationRIGO\WebApplicationRIGO\obj\Release\net6.0\WebApplicationRIGO.genruntimeconfig.cache
 D:\C#\WebApplicationRIGO\WebApplicationRIGO\obj\Release\net6.0\ref\WebApplicationRIGO.dll
+D:\C#\WebApplicationRIGO\WebApplicationRIGO\bin\Release\net6.0\RestSharp.dll

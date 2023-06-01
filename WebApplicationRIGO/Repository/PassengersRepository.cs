@@ -33,7 +33,7 @@ public class PassengersRepository
     
     public List<int> GetTripPassengersIds(int tripId)
     {
-        var passengers = _dbContext.Passengers.Where(p => p.UserId == tripId).ToList();
+        var passengers = _dbContext.Passengers.Where(p => p.TripId == tripId).ToList();
 
         List<int> usersIds = new List<int>();
 

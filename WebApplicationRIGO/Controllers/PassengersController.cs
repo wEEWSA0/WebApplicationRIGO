@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using WebApplicationRIGO.Controllers.Dtos;
 using WebApplicationRIGO.Models;
 using WebApplicationRIGO.Repository;
 
@@ -9,6 +10,7 @@ namespace WebApplicationRIGO.Controllers;
 public class PassengersController : ControllerBase
 {
     private PassengersRepository _passengersRepository = new PassengersRepository();
+    private TripsRepository _tripsRepository = new TripsRepository();
 
     [HttpGet("GetAll")]
     public List<Passenger> GetAll()
@@ -29,13 +31,13 @@ public class PassengersController : ControllerBase
     }
     
     [HttpDelete("DeleteUserFromTrip")]
-    public IActionResult DeleteUserFromTrip(int userId, int tripId)
+    public IActionResult DeleteUserFromTrip(PassengerParameters parameters)
     {
         var result = 500;
 
         try
         {
-            result = _passengersRepository.DeleteUserFromTrip(userId, tripId);
+            result = _passengersRepository.DeleteUserFromTrip(parameters.UserId, parameters.TripId);
         }
         catch (Exception e)
         {
@@ -64,5 +66,59 @@ public class PassengersController : ControllerBase
         }
         
         return StatusCode(result);
+    }
+    
+    [HttpGet("GetAllActiveUserTrips/{userId}")]
+    public IActionResult GetAllActiveUserTrips(int userId)
+    {
+        int result = 500;
+        List<Trip> userTrips = new List<Trip>();
+
+        try
+        {
+            userTrips = _tripsRepository.GetTripsByUserId(userId); // созданные юзером поездки
+            
+            var ids = GetUserTripsIds(userId); // id всех поездок
+            for (int i = 0; i < ids.Count; i++)
+            {
+                userTrips.AddRange(_tripsRepository.GetById(ids[i])); // инфа о поездках по id
+            }
+
+            result = 202;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("ERROR!!! " + e.Message);
+
+            return StatusCode(502, "База данных умерла");
+        }
+        
+        return StatusCode(result, userTrips);
+    }
+    
+    [HttpGet("GetUserAsPassengerTrips/{userId}")]
+    public IActionResult GetAllActiveUserAsPassengerTrips(int userId)
+    {
+        int result = 500;
+        List<Trip> userTrips = new List<Trip>();
+
+        try
+        {
+            var ids = GetUserTripsIds(userId); // id всех поездок
+            for (int i = 0; i < ids.Count; i++)
+            {
+                userTrips.AddRange(_tripsRepository.GetById(ids[i])); // инфа о поездках по id
+            }
+
+            result = 202;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine("ERROR!!! " + e.Message);
+
+            return StatusCode(502, "База данных умерла");
+        }
+        
+        return StatusCode(result, userTrips);
     }
 }

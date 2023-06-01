@@ -18,6 +18,11 @@ public class TripsRepository
         return _dbContext.Trips.Where(t => t.IsActive).ToList();
     }
     
+    public List<Trip> GetById(int id)
+    {
+        return _dbContext.Trips.Where(t => t.Id == id).ToList();
+    }
+    
     public List<Trip> GetLast(int count)
     {
         var trips = _dbContext.Trips.Where(t => t.IsActive).OrderByDescending(t => t.Id).ToList();
